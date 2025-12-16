@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BaseBallGameTest {
@@ -28,6 +29,14 @@ class BaseBallGameTest {
 
         // then
         assertThatThrownBy(() -> new BaseBallGame(points))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력값이_전부_숫자가_아닐_경우_예외_발생")
+    @Test
+    void 입력값이_전부_숫자가_아닐_경우_예외_발생() {
+        // given && when && then
+        assertThatThrownBy(() -> InputParse.parseNumbers("12e"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

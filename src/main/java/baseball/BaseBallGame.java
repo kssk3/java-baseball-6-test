@@ -22,7 +22,7 @@ public class BaseBallGame {
 
     private void validateDuplicateNumbers(List<Integer> otherNumbers) {
         Set<Integer> otherNumberSet = new HashSet<>(otherNumbers);
-        if (otherNumberSet.size() != 3) {
+        if (otherNumberSet.size() != otherNumbers.size()) {
             throw new IllegalArgumentException("중복된 값이 있습니다.");
         }
     }
