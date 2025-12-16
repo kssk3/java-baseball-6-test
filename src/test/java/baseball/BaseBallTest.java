@@ -57,4 +57,19 @@ public class BaseBallTest {
         // then
         assertThat(count).isEqualTo(2);
     }
+
+    @Test
+    void 입력값에_일치한_값이_하나도_없을_경우_테스트_실패() {
+        // given
+        List<Integer> points = List.of(1, 2, 3);
+
+        // when
+        List<Integer> numbers = InputParse.parseNumbers("456");
+
+        long count = numbers.stream()
+                .filter(points::contains)
+                .count();
+
+        assertThat(count).isEqualTo(0);
+    }
 }
