@@ -21,6 +21,7 @@ public class InputParse {
         if(!Pattern.matches(REGEX_PATTERN_NUMBER, input)) {
             throw new IllegalArgumentException("입력값이 숫자가 아닙니다.");
         }
-
     }
+
+
 }
