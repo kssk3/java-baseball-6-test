@@ -4,27 +4,27 @@ import java.util.List;
 
 public class GamePoints {
 
-    private List<Integer> computePoints;
+    private List<Integer> computerPoints;
     private List<Integer> points;
     private int strikeCounts;
     private int ballCounts;
     private boolean emptyPoint;
 
-    public GamePoints(List<Integer> computePoints, List<Integer> points) {
-        this.computePoints = computePoints;
+    public GamePoints(List<Integer> computerPoints, List<Integer> points) {
+        this.computerPoints = computerPoints;
         this.points = points;
-        calculateGamePoints(computePoints, points);
-        this.emptyPoint = isEmptyPoints(strikeCounts, ballCounts);
+        calculateGamePoints(computerPoints, points);
+        this.emptyPoint = isEmptyPoints(this.strikeCounts, this.ballCounts);
     }
 
     private void calculateGamePoints(List<Integer> computerPoints, List<Integer> points) {
         for (int i = 0; i < computerPoints.size(); i++) {
             for (int j = 0; j < points.size(); j++) {
                 if (i == j && computerPoints.get(i).equals(points.get(j))) {
-                    strikeCounts++;
+                    this.strikeCounts++;
                 }
                 if (i != j && computerPoints.get(i).equals(points.get(j))) {
-                    ballCounts++;
+                    this.ballCounts++;
                 }
             }
         }

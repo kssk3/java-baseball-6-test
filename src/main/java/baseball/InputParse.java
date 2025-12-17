@@ -12,6 +12,7 @@ public class InputParse {
 
     public static List<Integer> parseNumbers(String input) {
         validateNumbers(input);
+        validateNumberLength(input);
         return Arrays.stream(input.trim().split(""))
                 .map(Integer::parseInt)
                 .toList();
@@ -23,5 +24,9 @@ public class InputParse {
         }
     }
 
-
+    private static void validateNumberLength(String input) {
+        if (input.length() != 3) {
+            throw new IllegalArgumentException("입력값이 3자리가 아닙니다.");
+        }
+    }
 }
