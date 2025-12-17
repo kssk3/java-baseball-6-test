@@ -1,33 +1,33 @@
 package baseball;
 
-import java.util.HashSet;
+import baseball.view.InputView;
 import java.util.List;
-import java.util.Set;
+import java.util.function.Supplier;
 
 public class BaseBallGame {
 
-    private List<Integer> points;
+    private InputView inputView;
 
-    public BaseBallGame(List<Integer> points) {
-        validateNullAndEmpty(points);
-        validateDuplicateNumbers(points);
-        this.points = points;
+    public void run() {
+        GamePoints gamePoints = getGamePoints();
     }
 
-    private void validateNullAndEmpty(List<Integer> otherNumbers) {
-        if(otherNumbers == null || otherNumbers.isEmpty()) {
-            throw new IllegalArgumentException("입력값이 비어 있습니다.");
+    private <T> T retryOnException(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void validateDuplicateNumbers(List<Integer> otherNumbers) {
-        Set<Integer> otherNumberSet = new HashSet<>(otherNumbers);
-        if (otherNumberSet.size() != otherNumbers.size()) {
-            throw new IllegalArgumentException("중복된 값이 있습니다.");
-        }
-    }
-
-    public List<Integer> getPoints() {
-        return points;
+    private GamePoints getGamePoints() {
+        return retryOnException(() -> {
+            List<Integer> computerPoints = List.of(3, 2, 1);
+            List<Integer> numbers = InputParse.parseNumbers("123");
+//        List<Integer> numbers = InputParse.parseNumbers(inputView.readLine());
+            return new GamePoints(computerPoints, numbers);
+        });
     }
 }
